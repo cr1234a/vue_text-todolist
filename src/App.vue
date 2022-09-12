@@ -18,12 +18,15 @@ export default {
 name:'App',
 data(){
     return {
-        todos:[
-            {id:'001',content:'唱',done:false},
-            {id:'002',content:'跳',done:false},
-            {id:'003',content:'rap',done:false},
-            {id:'004',content:'篮球',done:false}
-        ]
+        todos:JSON.parse(localStorage.getItem('todos')) || []
+    }
+},
+watch:{
+    todos:{
+deep:true,
+handler(value){
+    localStorage.setItem('todos',JSON.stringify(value))
+}
     }
 },
 components:{
